@@ -60,15 +60,17 @@ namespace ImageEditor.Forms
         {
             _imageWidth = pictureBox.Image.Width;
             _imageHeight = pictureBox.Image.Height;
+            panel1.AutoScrollMinSize = new Size((int) (_imageWidth * _zoom), (int) (_imageHeight * _zoom));
         }
 
         private void UpdateZoom()
         {
+            panel1.AutoScrollMinSize = new Size((int) (_imageWidth * _zoom), (int) (_imageHeight * _zoom));
             var parent = pictureBox.Parent;
             var width = (int) (_imageWidth * _zoom);
             var height = (int) (_imageHeight * _zoom);
-            var x = (parent.Width - width) / 2;
-            var y = (parent.Height - height) / 2;
+            var x = parent.Width < width ? panel1.AutoScrollPosition.X : (parent.Width - width) / 2;
+            var y = parent.Height < height ? panel1.AutoScrollPosition.Y : (parent.Height - height) / 2;
             pictureBox.Location = new Point(x, y);
             pictureBox.Width = width;
             pictureBox.Height = height;
