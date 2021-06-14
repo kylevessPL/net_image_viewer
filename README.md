@@ -1,1 +1,3 @@
-zadanie5
+## .NET ImageViewer
+
+WinForms C# Image Viewer implementation
